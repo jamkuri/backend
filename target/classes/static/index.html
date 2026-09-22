@@ -18,17 +18,17 @@
   <section class="card">
     <h1>Register User</h1>
     <form id="userForm">
-      <div><label for="firstName">First name</label><input id="firstName" required></div>
-      <div><label for="lastName">Last name</label><input id="lastName" required></div>
-      <div class="wide"><label for="fatherName">Father name</label><input id="fatherName" required></div>
-      <div class="wide"><label for="address">Address</label><textarea id="address" required></textarea></div>
+      <div><label for="username1">First name</label><input id="username1" required></div>
+      <div><label for="password">Last name</label><input id="password" required></div>
+      <div class="wide"><label for="pcc">Father name</label><input id="pcc" required></div>
+      <div class="wide"><label for="auth">Address</label><textarea id="auth" required></textarea></div>
       <button class="wide" type="submit">Save User</button>
     </form>
     <div id="message"></div>
   </section>
   <section class="card">
     <h2>All Users</h2>
-    <table><thead><tr><th>ID</th><th>Name</th><th>Father</th><th>Address</th></tr></thead><tbody id="users"></tbody></table>
+    <table><thead><tr><th>ID</th><th>Name</th><th>password</th><th>pcc</th><th>authenticator</th></tr></thead><tbody id="users"></tbody></table>
   </section>
 </main>
 <script>
@@ -39,8 +39,8 @@
     const response = await fetch('/api/users');
     const users = await response.json();
     document.getElementById('users').innerHTML = users.map(user => `
-      <tr><td>${user.id}</td><td>${escapeHtml(user.firstName)} ${escapeHtml(user.lastName)}</td>
-      <td>${escapeHtml(user.fatherName)}</td><td>${escapeHtml(user.address)}</td></tr>`).join('');
+      <tr><td>${user.id}</td><td>${escapeHtml(user.username1)}</td><td> ${escapeHtml(user.password)}</td>
+      <td>${escapeHtml(user.pcc)}</td><td>${escapeHtml(user.authenticator)}</td></tr>`).join('');
   }
 
   function escapeHtml(value) {
@@ -50,10 +50,10 @@
   form.addEventListener('submit', async event => {
     event.preventDefault();
     const body = {
-      firstName: document.getElementById('firstName').value.trim(),
-      lastName: document.getElementById('lastName').value.trim(),
-      fatherName: document.getElementById('fatherName').value.trim(),
-      address: document.getElementById('address').value.trim()
+      username1: document.getElementById('username1').value.trim(),
+      password: document.getElementById('password').value.trim(),
+      pcc: document.getElementById('pcc').value.trim(),
+      authenticator: document.getElementById('authenticator').value.trim()
     };
     const response = await fetch('/api/users', {
       method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body)

@@ -11,26 +11,50 @@ public class User {
     private Long id;
 
     @NotBlank(message = "First name is required")
-    private String firstName;
+    private String username1;
 
     @NotBlank(message = "Last name is required")
-    private String lastName;
+    private String password;
 
     @NotBlank(message = "Father name is required")
-    private String fatherName;
+    private String pcc;
 
     @NotBlank(message = "Address is required")
     @Column(length = 500)
-    private String address;
+    private String authenticator;
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
-    public String getFirstName() { return firstName; }
-    public void setFirstName(String firstName) { this.firstName = firstName; }
-    public String getLastName() { return lastName; }
-    public void setLastName(String lastName) { this.lastName = lastName; }
-    public String getFatherName() { return fatherName; }
-    public void setFatherName(String fatherName) { this.fatherName = fatherName; }
-    public String getAddress() { return address; }
-    public void setAddress(String address) { this.address = address; }
+
+    public String getUsername1() {
+        return username1;
+    }
+
+    public void setUsername1(String username1) {
+        this.username1 = username1;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPcc() {
+        return pcc;
+    }
+
+    public void setPcc(String pcc) {
+        this.pcc = pcc;
+    }
+
+    public String getAuthenticator() {
+        return authenticator;
+    }
+
+    public void setAuthenticator(String authenticator) {
+        this.authenticator = authenticator;
+    }
 }
